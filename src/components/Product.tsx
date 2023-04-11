@@ -1,17 +1,36 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 import ReactPixel from "react-facebook-pixel";
+import { useEffect, useState } from "react";
 
 export const Product = () => {
   const { id } = useParams();
+  const { pathname } = useLocation();
 
-  const handleClick = () => {
-    ReactPixel.track("AddToCart", { value: id, currency: "RSD" });
+  const [items, setItems] = useState({ id, value: 0 });
+
+  const addToCart = () => {
+    ReactPixel.track("AddToCart");
+    setItems({ id, value: Math.min(items.value + 1, 5) });
   };
+
+  const handlePurchase = () => {
+    ReactPixel.track("Purchase", { value: items, currency: "RSD" });
+  };
+
+  useEffect(() => {
+    setItems({ id, value: 0 });
+  }, [pathname, id]);
+
   return (
     <Wrapper>
       <h2>This is a page for product with ID: {id} </h2>
-      <Button onClick={handleClick}>Buy product {id}</Button>
+      <h3>
+        Items id {id} in cart: {items.value}
+      </h3>
+      <Button onClick={() => setItems({ id, value: 0 })}>Reset</Button>
+      <Button onClick={addToCart}>Add to Cart {id}</Button>
+      <Button onClick={handlePurchase}>Checkout {id}</Button>
     </Wrapper>
   );
 };
