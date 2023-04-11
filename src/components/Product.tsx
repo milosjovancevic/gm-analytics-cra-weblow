@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import ReactPixel from "react-facebook-pixel";
 
 export const Product = () => {
   const { id } = useParams();
 
   const handleClick = () => {
-    console.log("click");
+    ReactPixel.track("AddToCart", { value: id, currency: "RSD" });
   };
   return (
     <Wrapper>
