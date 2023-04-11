@@ -15,6 +15,10 @@ export const Product = () => {
   };
 
   const handlePurchase = () => {
+    if (items.value === 0) {
+      alert("Your cart is empty");
+      return;
+    }
     ReactPixel.track("Purchase", { value: items.value, currency: "RSD" });
     setItems({ id, value: 0 });
     alert("Thanks for ordering!");
@@ -28,11 +32,11 @@ export const Product = () => {
     <Wrapper>
       <h2>This is a page for product with ID: {id} </h2>
       <h3>
-        Items id {id} in cart: {items.value}
+        Items with id {items.id} in cart: {items.value}
       </h3>
       <Button onClick={() => setItems({ id, value: 0 })}>Reset</Button>
-      <Button onClick={addToCart}>Add to Cart {id}</Button>
-      <Button onClick={handlePurchase}>Checkout {id}</Button>
+      <Button onClick={addToCart}>Add to Cart</Button>
+      <Button onClick={handlePurchase}>Checkout</Button>
     </Wrapper>
   );
 };
