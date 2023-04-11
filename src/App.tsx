@@ -4,8 +4,10 @@ import { Home } from "./components/Home";
 import { Navigation } from "./components/Navigation";
 import { Product } from "./components/Product";
 import styled from "styled-components";
+import { FacebookPixel } from "./analytics/FacebookPixel";
 
 function AppRouter() {
+  FacebookPixel();
   return (
     <Wrapper>
       <Navigation />
