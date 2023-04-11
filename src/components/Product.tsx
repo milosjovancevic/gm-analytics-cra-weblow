@@ -25,7 +25,7 @@ export const Product = () => {
       alert("Your cart is empty");
       return;
     }
-    ReactPixel.track("Purchase", { name: id, value: price });
+    ReactPixel.track("Purchase", { name: id, value: price, currency: "RSD" });
     setItems({ id, value: 0 });
     alert("Thanks for ordering!");
   };
