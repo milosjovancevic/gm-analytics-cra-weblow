@@ -15,7 +15,7 @@ export const Product = () => {
   };
 
   const handlePurchase = () => {
-    ReactPixel.track("Purchase", { value: items, currency: "RSD" });
+    ReactPixel.track("Purchase", { value: items.value, currency: "RSD" });
   };
 
   useEffect(() => {
