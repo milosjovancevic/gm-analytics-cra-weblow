@@ -9,15 +9,13 @@ export const Product = () => {
 
   const [items, setItems] = useState({ id, value: 0 });
 
-  const price = items.value * 100;
-
   const addToCart = () => {
+    setItems({ id, value: Math.min(items.value + 1, 5) });
     ReactPixel.track("AddToCart", {
       name: id,
-      value: price,
+      value: items.value,
       currency: "RSD",
     });
-    setItems({ id, value: Math.min(items.value + 1, 5) });
   };
 
   const handlePurchase = () => {
@@ -25,7 +23,7 @@ export const Product = () => {
       alert("Your cart is empty");
       return;
     }
-    ReactPixel.track("Purchase", { name: id, value: price, currency: "RSD" });
+    ReactPixel.track("Purchase", { value: items.value, currency: "RSD" });
     setItems({ id, value: 0 });
     alert("Thanks for ordering!");
   };
