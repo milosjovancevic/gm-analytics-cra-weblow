@@ -39,8 +39,12 @@ export const Product = () => {
         Items with id {items.id} in cart: {items.value}
       </h3>
       <Button onClick={() => setItems({ id, value: 0 })}>Reset</Button>
-      <Button onClick={addToCart}>Add to Cart</Button>
-      <Button onClick={handlePurchase}>Checkout</Button>
+      <Button className="addToCart" onClick={addToCart}>
+        Add to Cart
+      </Button>
+      <Button className="checkout" onClick={handlePurchase}>
+        Checkout
+      </Button>
     </Wrapper>
   );
 };
