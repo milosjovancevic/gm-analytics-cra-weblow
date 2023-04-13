@@ -8,7 +8,7 @@ import { FacebookPixel } from "./analytics/FacebookPixel";
 import { DocumentTitle } from "./components/DocumentTitle";
 
 function AppRouter() {
-  FacebookPixel();
+  // FacebookPixel();
   const { pathname } = useLocation();
 
   return (
