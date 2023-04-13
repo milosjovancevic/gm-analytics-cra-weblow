@@ -36,7 +36,8 @@ export const Product = () => {
     <Wrapper>
       <h2>This is a page for product with ID: {id} </h2>
       <h3>
-        Items with id {items.id} in cart: {items.value}
+        Items with id {items.id} in cart:{" "}
+        <span className="quantity">{items.value}</span>
       </h3>
       <Button onClick={() => setItems({ id, value: 0 })}>Reset</Button>
       <Button className="addToCart" onClick={addToCart}>
